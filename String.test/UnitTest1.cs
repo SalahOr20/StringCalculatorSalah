@@ -44,6 +44,23 @@ namespace UnitTest1.cs
             //Elle renvoie l'addition de (a + b + c)
             Assert.Equal(a + b + c, résultat);
         }
+        [Fact]
+        public void SautDeLigne()
+        {
+            // ETANT DONNE une chaîne de nombres avec un saut de ligne
+
+            var entrée = string.Join(',', new int[] { 1, 2, 3 });
+            var EAvecS = CalculatorAdd.Add(entrée);
+
+            // QUAND on appelle Add
+            var SAvecS = CalculatorAdd.Add(entrée);
+
+            // ALORS on obtient  la somme des nombres
+
+            var SSansS = CalculatorAdd.Add(entrée);
+
+            Assert.Equal(SSansS, SAvecS);
+        }
 
     }
  
