@@ -82,7 +82,7 @@ namespace UnitTest1.cs
         }
 
         [Fact]
-        public void NombresGrand (int résultatPetitsnombres, int résultatGrandsNombres)
+        public void NombresGrand (int résultatPetitsnombres, int résultatGrandsNombre)
         {
             // Quand on a une chaîne de nombres comprenant un nombre >1000
 
@@ -91,7 +91,7 @@ namespace UnitTest1.cs
 
             //-> Add
 
-            var résultatAvecGrandNombres = CalculatorAdd.Add(entrée);
+            var résultatAvecGrandNombre = CalculatorAdd.Add(entrée);
 
             // Nb < à 1000
 
@@ -99,7 +99,7 @@ namespace UnitTest1.cs
             var entréePetitsNombres = string.Join(',', PetitsNombres);
             var résultatPetitsNombres = CalculatorAdd.Add(entréePetitsNombres);
 
-            Assert.Equal(résultatPetitsNombres, résultatGrandsNombres);
+            Assert.Equal(résultatPetitsNombres, résultatGrandsNombre);
 
         }
 
