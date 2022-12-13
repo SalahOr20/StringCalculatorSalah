@@ -27,10 +27,11 @@ namespace UnitTest1.cs
 
 
         }
+
         [Theory(DisplayName = "Lorsque on a une chaine (a,b,c) en entrée" +
                               "Et quand on appelle CalculatorAdd " +
                               "le retour sera l'addition de (a,b,c")]
-        [InlineData(1,2,3)]
+        [InlineData(1, 2, 3)]
         public void AddPlus(int a, int b, int c)
 
         {
@@ -44,6 +45,7 @@ namespace UnitTest1.cs
             //Elle renvoie l'addition de (a + b + c)
             Assert.Equal(a + b + c, résultat);
         }
+
         [Fact]
         public void SautDeLigne()
         {
@@ -62,8 +64,45 @@ namespace UnitTest1.cs
             Assert.Equal(SSansS, SAvecS);
         }
 
+        [Fact]
+        public void NombresNégatifsNonAutorisés()
+        {
+            // ETANT DONNE une chaîne de nombres avec un chiffre négatif 
+            var entrée = string.Join(',', new int[] { 1, 2, -3 });
+
+            // QUAND on appelle Add
+            void Act() => CalculatorAdd.Add(entrée);
+
+            // Alors on retourne une exception avec la position du chiffre negatif
+
+            var exception = Assert.Throws<ExceptionNBN>(Act);
+
+            Assert.Equal(-1, exception.NombreFautif);
+            Assert.Equal(-1, exception.Position);
+        }
+
+        [Fact]
+        public void NombresGrand (int résultatPetitsnombres, int résultatGrandsNombres)
+        {
+            // Quand on a une chaîne de nombres comprenant un nombre >1000
+
+            var nombres = new int[] { 1200, 1, 5 };
+            var entrée = string.Join(',', nombres);
+
+            //-> Add
+
+            var résultatAvecGrandNombres = CalculatorAdd.Add(entrée);
+
+            // Nb < à 1000
+
+            var PetitsNombres = nombres.Where(nombres => nombres <= 1000);
+            var entréePetitsNombres = string.Join(',', PetitsNombres);
+            var résultatPetitsNombres = CalculatorAdd.Add(entréePetitsNombres);
+
+            Assert.Equal(résultatPetitsNombres, résultatGrandsNombres);
+
+        }
+
+
     }
- 
-
-
 }
